@@ -1,0 +1,34 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Pamiętnik jest czytelny na pełnym ekranie. Przynajmniej na moim 2560x1440. W razie problemów mogę poprawić. Tak samo w przypadku baboli ortograficznych. 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+================================================================================================================================================================
+17 Października 2021.
+
+Drogi mój pamiętniczku.
+
+ Od ostatnich zajęć minął tydzień. Od tego czasu w miarę możliwości codziennie się czegoś uczyłem cegiełka po cegiełce
+Kto by się jednak spodziewał że największym wyzwaniem będzie nauka na zajęcia UKOS.
+Masa informacji w krótkim czasie przytłacza już nie mówiąc o tym że to nie jest jedyny przedmiot któremu należy poświęcać czas.
+ 
+ Mimo to dzień za dniem uczyłem się czegoś nowego. Czy to polecenia w terminalu linuxa, nauka Git-branchingu czy obsługi vima.
+Na ten czas narbardziej spodobała mi się komenda " tree ", która wyświetla w sposób graficzny jakie katalogi i pliki posiadam.
+Bardzo przydatna funkcja. Wiem na czym stoję bez większych kombinacji. Klawisz tabulatora też znacznie ułatwia życie.
+
+ Moją największą obawą jest popełnianie błedów, szczególnie jeśli chodzi o odpowiednie wykonywanie zadań i pushowanie gitów w poprawny/wymagany sposób.
+Na szczęście znalazłem na to dość dobre rozwiązanie. Za pomocą VirtualBoxa postawiłem linuxa i każde polecenie, które jest dla mnie nowe mogę do woli testować.
+Nawet jeśli skasuję cały system operacyjny to stanie się to na maszynie witrualnej, a nie tam gdzie bym tego nie chciał. Win-Win Sytuation. 
+
+Podsumowując. Nauka od zera to niełatwe zadanie, jednak staje się bardzo satysfakcjonująca gdy już pojawia się reakcja: "TAK DZIAŁA! NARESZCIE!". 
+Nie mam zamiaru poddawać się bez walki,czego i życzę wsystkim ambitnym studentom.
+
+Do zobacznia wkrótce, twój student: 25535.
+
+Ps: Numpad na vimie mnie wykończy ;__;
+
+================================================================================================================================================================
+
+ 
+ 
+  
+
+ 
