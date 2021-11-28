@@ -117,10 +117,10 @@ Wykonanie zadań nr1.
   
 ================================================================================
 8.
-  1.Nie mam przydzielonych praw dostępu do katalogu w którym chcę utworzyć plik.
+  1.Nie mam przydzielonych uprawnien do katalogu w którym chcę utworzyć plik.
   2.Serwery padły/Internet mi padł i mnie zaraz wywali.
+  3.Przydzielone mi miejsce na dysku uczenianym się skończyło
 
-  Trochę mało tych pomysłów mam.
 ================================================================================
 9.TAB-ulator. Oczywiście trzeba podać początek by miał co uzupełniać.
 ================================================================================
