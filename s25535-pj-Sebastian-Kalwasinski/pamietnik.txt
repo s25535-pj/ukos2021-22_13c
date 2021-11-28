@@ -124,8 +124,11 @@ uprawnienie r daje prawo do odczytu
 uprawnienie w daje prawo do zapisu
 uprawnienie x daje prawo do wykonania
 
-A te trzy uprawnienia stanowią całość którą nazywamy prawami dostępu, które są
-przydzielane konkretnym osobom.
+A te trzy uprawnienia odnosząc się do wszytkich trzech osób UGO,
+user, group, others, stanowią jedną całość nazywaną mianem "prawa dostępu"
+
+ r, w, x,   - uprawnienia
+ rwxr-x---  - prawa dostępu
 
 Idę płakać w poduszkę z nadzieją że jest już ok.
 Żartowałem. Teraz czas popłakać nad programowaniem xD.
