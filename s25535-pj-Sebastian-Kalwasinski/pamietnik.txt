@@ -120,16 +120,16 @@ mi nie pomoże bo już raz nie potrafili xd. Zatem kierowany frustracją i strac
 zrobić kopiuj-wklej z zajęć nr. 2. Jak tak teraz nad tym pomyślę to po kiego
 grzyba nas tak męczyłem.
 
-prawo r - prawo do odczytu
-prawo w - prawo do zapisu
-prawo x - prawo do wykonania
+ r - prawo do odczytu
+ w - prawo do zapisu
+ x - prawo do wykonania
 
-rwxr-x--- opis praw dostępu dla poszczególnych osób
+rwxr-x--- opis praw dostępu do poszczególnych plików
 
 Co ciekawe ani razu nie pada tam słowo uprawnienia.
 
 Cały problem może wynikać z tego,
-że nie do końca rozumiałem wyjaśnienia man-a na temat chmod.
+że nie do końca rozumiem wyjaśnienia man-a na temat chmod.
 
 "format trybu symbolicznego to [ugoa...][[-+=][uprawnienie...]...], gdzie
  uprawnienie jest albo zerem lub większą liczbą liter z zestawu rwxXst, albo
@@ -144,7 +144,8 @@ Proszę o pomoc:
 
 Zgodnie z definicją man-a "zestaw liter rwx", "0", oraz "u" są uprawnieniami.
 Wniosek nasuwa się taki że pojedyńcza litera to prawo,
-a większa liczba liter to już uprawnienie.
+a większa liczba liter to już uprawnienie. Nie wiem czy jestem w stanie 
+jeszcze coś samodzielnie wyciągnąć.
 
 ================================================================================
 
