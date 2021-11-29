@@ -111,29 +111,40 @@ s25535 Tutaj był.
 ================================================================================
 29 Listopada 2021
 
-Podejście drugie.
+Drogi pamiętniczku. 
 
-Dużo się naszukałem, naczytałem i poświęciłem czasu.
-Czytanie strony man chmod, sposobu w jaki są zapisane zadania "02.PRAWA DOSTĘPU"
-i wszystkich błędnych zapisów w githubie "prawa czy uprawnienia".
-Doszedłem do wniosku że:
+Jest po trzeciej w nocy, a ja dalej robię z siebie idiotę bo nie mogę poukładać
+sobie w głowie czym się róznią prawa a uprawnienia. Raczej nikt z grupy
+mi nie pomoże bo już raz nie potrafili xd. Zatem kierowany frustracją i strachem
+że Pan prowadzący zajęcia też ma już dość doszedłem do wniosku że najlepiej
+zrobić kopiuj-wklej z zajęć nr. 2. Jak tak teraz nad tym pomyślę to po kiego
+grzyba nas tak męczyłem.
 
-Uprawnienia dają prawo do czegoś
+prawo r - prawo do odczytu
+prawo w - prawo do zapisu
+prawo x - prawo do wykonania
 
-uprawnienie r daje prawo do odczytu
-uprawnienie w daje prawo do zapisu
-uprawnienie x daje prawo do wykonania
+rwxr-x--- opis praw dostępu dla poszczególnych osób
 
-A te trzy uprawnienia odnosząc się do wszytkich trzech osób UGO,
-user, group, others, stanowią jedną całość nazywaną mianem "prawa dostępu"
+Co ciekawe ani razu nie pada tam słowo uprawnienia.
 
- r, w, x,   - uprawnienia
- rwxr-x---  - prawa dostępu
+Cały problem może wynikać z tego,
+że nie do końca rozumiałem wyjaśnienia man-a na temat chmod.
 
-Idę płakać w poduszkę z nadzieją że jest już ok.
-Żartowałem. Teraz czas popłakać nad programowaniem xD.
+"format trybu symbolicznego to [ugoa...][[-+=][uprawnienie...]...], gdzie
+ uprawnienie jest albo zerem lub większą liczbą liter z zestawu rwxXst, albo
+ pojedynczą literą  z zestawu ugo. Można podać wiele operacji symbolicznych,
+ oddzielonych przecinkami."
+ 
+ zestaw liter:   chmod g=rwx  plik
+ zero:           chmod 0      plik
+ litera z ugoa   chmod g=u    plik
 
+Proszę o pomoc:
 
+Zgodnie z definicją man-a "zestaw liter rwx", "0", oraz "u" są uprawnieniami.
+Wniosek nasuwa się taki że pojedyńcza litera to prawo,
+a większa liczba liter to już uprawnienie.
 
 ================================================================================
 
