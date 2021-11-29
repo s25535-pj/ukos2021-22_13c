@@ -49,9 +49,9 @@ Wykonanie zadań nr1.
   
    ps aux | grep "nazwa programu"
   
-   kill -sigkill PID
+   kill -SIGKILL PID
+   kill -KILL PID
    kill -9 PID
-   -9 PID
    
   To zadanie wykonuję zakładając że tylko program nie reaguje, a terminal
   działa bez problemów. Drażniło mnie zagadnienie w którym terminal też by
