@@ -177,10 +177,10 @@ przyszłośći. Ćwiczenia na learn-git-branchingu, są dobre, uczą w jaki spos
 działają polecenia związane z gitem, ale nie ma co się oszukiwać bo to tylko
 wierzchołek góry lodowej.
  Pewnego dnia próbowałem stworzyć własne repozytorium i parę innych czynności
-na trzy różne sposoby. Terminal, strona gita i aplikacja desktopowa.
+na trzy różne sposoby. Terminal, strona githuba i aplikacja desktopowa.
 Chyba zostanę przy terminalu, szczególnie że na terminalu umiem najwięcej, a
-Pan prowadzący odradził korzystanie ze strony internetowej gita.
-Wieżę w ciemno. Siedzi w tym dłużej i zapewne będzie to wymagane by używać
+Pan prowadzący odradził korzystanie ze strony internetowej githuba.
+Wierzę w ciemno. Siedzi w tym dłużej i zapewne będzie to wymagane by używać
 terminala do pracy z gitem.
 
 Liczę na owocną współpracę, s25535
