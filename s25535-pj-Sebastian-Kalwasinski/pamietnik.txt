@@ -185,4 +185,33 @@ terminala do pracy z gitem.
 
 Liczę na owocną współpracę, s25535
 
- 
+================================================================================
+15 Stycznia 2022
+
+Pierwszy wpis w tym roku dla pamiętnika.
+
+ Na ostatnich zajęciach męczyliśmy windowsowego powershella. Tym razem była to
+praca indywidualna ze względu na uczniów poprawiających kolokwium. W sumie 
+to się nie gniewam, jest jak jest. Najważnieszje że mamy, powiedzmy "poradnik"
+jak się w ogóle za Powershella zabrać.
+ Pierwsze wrażenia? Przytłaczające. Dużo niebieskiego dużo niezrozumiałych
+robaczków i jeszcze więcej tekstu nie wspominając o strachu że zrobię sobie
+kuku na PC-cie, chodziaż nie ukrywam że format by mu się przydał ;) .
+ Sposób w jaki poradnik jest zapisany pomaga by się nie zrazić.
+Jest opis, potem linijka którą możemy wkleić, zobaczyć co się stanie i dalej
+opis, który mówi co się tak właściwie stało, ewentualnie jakieś "upgrade-y"
+ Widać dużo podobieństw do tego co robiliśmy wcześniej. Jakieś polecenie,
+potem potok i dalej przetwarzamy to co mamy. Koniec poradnika szczególnie
+przypadł mi do gustu.
+ Nie mówię o tym oczywistym "łał, ale fajne", bo to jest oczywiste.
+Te ostatnie dwa elementy z kotem i zaspamowywaniem powiadomień, uświadamiają
+jak ogromne są możliwości powershella. Wklejam trochę tekstu, a może się
+zadziać o wiele więcej niż trochę. U mnie to bardziej udowodniły niż 
+uświadomiły, ale wychodzi na to samo - że warto PowerShella poznać bliżej,
+
+Jak kiedyś jakaś reklama mówiła: "Polecam - Magda Gessler".
+
+s25535.
+
+
+
