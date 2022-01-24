@@ -1,0 +1,123 @@
+================================================================================
+Przerabianie poradnika do PowerShella
+================================================================================
+
+Set-ExecutionPolicy Bypass
+Bez tego polecenia, nasze sktypty nie będą działać.
+
+Konwencja nazewnicza PowerShella Czasownik  NaCzymMaOperować
+np. get, set, find, add, create + obiekt
+
+================================================================================
+
+Teraz trochę o tych wszytskich strasznych robaczkach.
+
+--------------------------------------------------------------------------------
+cmdlet - Mała komenda w Windowsowym PowerShellu, zwykle skrypt spełniający
+         pojedyńcze zadanie np. kopiowanie.
+
+--------------------------------------------------------------------------------
+ | - Pipeline - Przekaż dane WYJŚCIOWE jako dane WEJŚCIOWE.
+     "Podaj dalej" -   polecenie1 | polecenie2 | 3 | 4        1 -->2 -->3 -->4
+
+--------------------------------------------------------------------------------
+ $ - Zmienna - jednostka pamięci, w której przechowywane są wartości.
+     W PowerShell zmienne są reprezentowane przez ciągi tekstowe zaczynające się
+     od znaku dolara, takie jak:
+
+     $i, $process, $my_var lub $cred.
+   
+     W nazwach zmiennych wielkość liter NIE JEST rozróżniana
+     MOGĄ ZAWIERAĆ SPACJE i znaki specjalne.
+
+Zmiennym możemy przypisywać wartości np. $passwrd = 123456 , $imie = "Maciek"
+
+Usówanie wartości ze zmiennej:
+$zmienna = $null,  lub  Clear-Variable -Name zmienna
+
+
+--------------------------------------------------------------------------------
+ $_ - Zmienna automatyczna reprezentuje każdy obiekt, który jest przekazywany
+      do polecenia cmdlet. Jest tworzona z automatu gdy operujemy na kolekcjach/
+      zbiorach, np. zbiorach wersji.
+
+--------------------------------------------------------------------------------
+
+ ? - Where-Object - Gdzie jest/gdzie się znajduje
+
+
+Get-Module -ListAvailable | ? {$_.Version -ge "2.0.0.0"}
+Get-Module -ListAvailable | Where-Object {$_.Version -ge "2.0.0.0"}
+
+Te dwa polecienia to to samo tylko inaczej zapisane
+
+
+--------------------------------------------------------------------------------
+ % - ForEach-Object - Pętla, dla każdego elementu wykonaj tą linię.
+
+Get-Module -ListAvailable |(...)| % {Get-Command -Module $_.Name}
+Get-Module -ListAvailable |(...)| ForEach-Object {Get-Command -Module $_.Name}
+
+To to samo tylko inaczej zapisane.
+
+
+--------------------------------------------------------------------------------
+ & - Call         - Wywołaj/uruchom np.  & C:\Windows\notepad.exe
+                   
+ Uruchamiamy program podając ścieżkę do niego. W tym przypadku jest to notatnik.
+
+--------------------------------------------------------------------------------
+ -ge - Operator porównania, większe niż, lub równe
+
+Jest ich o wiele więcej, ale są w internecie. Nie ma co przepisywać.
+
+--------------------------------------------------------------------------------
+-like - Porównanie - ciąg znaków który pasuje do wzorca wieloznacznego 
+
+--------------------------------------------------------------------------------
+(Parametr) ListAvailable - służy do wyświetlania listy modułów, które
+można zaimportować ze ścieżek określonych w zmiennej środowiskowej PSModulePath.
+($env:PSModulePath). 
+
+--------------------------------------------------------------------------------
+Gwiazdka ( * )- Wildcard - Zastępuje inne znaki; używana razem z -like
+np.  a* =  aA, ag, Apple
+
+
+($_.Name -like "Add-*")               Add-Jakieśznaki 
+($_.Name -like "JakiśKawałekTekstu*") JakiśKawałekTekstuJAKIEŚZNAKI
+
+================================================================================
+To teraz trochę analizy.
+
+1.  Get-Module -ListAvailable |
+2.   ? {$_.Version -ge "2.0.0.0"} |
+3.   % {Get-Command -Module $_.Name} |
+4.   ? {($_.Name -like "Add-*") -or ($_.Name -like "Get-*")} |
+5.   Out-GridView
+
+
+1.  Zdobadź Moduły i wyświetl dostępne w postaci listy |
+2.  Których wersja ma być być większa lub równa 2.0.0.0 |
+3.  Dla każdego(modułu) , zdobądź polecenie w Module,
+    zmienna przechowująca nazwę (tego modułu) |
+4.  Których nazwa zawiera "Add-"  lub których nazwa zawiera "Get-"
+5.  Wyświetl poza konsolą (zewnętrzne okno) w postaci tabeli.
+
+Zmienna "$_.Name" jest argumentem parametru "Module" i przechowuje nazwę obecnie
+przetwarzanego modułu. Miałem problemy ze zrozumieniem po co to, jak to działa,
+to ją usunąłem i wywaliło błąd że parametr "moduł" nie ma argumentu. W przypadku
+tego potoku moduł nie miał nazwy więc powershell nie wiedział
+na czym ma pracować. Co każde wykonanie polecenia nazwa modułu się zmienia
+dlatego musimy tam dać zmienną, a nie stałą nazwę.
+Tylko dlaczego musi być to konkretnie "Name"? Gdy zmieniałem Name na co innego
+np."Nazwa" to miałem nieskończone pętle.
+
+================================================================================
+Out-Null     - Nic nie zwracaj
+Out-File     - Zwróc do pliku
+Out-GridViev - Zwróc w postaci tabeli w nowym oknie
+
+
+
+
