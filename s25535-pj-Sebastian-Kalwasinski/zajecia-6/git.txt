@@ -1,0 +1,140 @@
+================================================================================
+Trochę opisu gita
+================================================================================
+Może lista poleceń?
+
+--------------------------------------------------------------------------------
+git commit -m "Komentarz"  (message)
+
+Commitowanie naszych zmian i dodawanie komentarza/wiadomości do commita
+
+--------------------------------------------------------------------------------
+git add
+
+Dodanie katalogu do obserwowanych przez gita
+
+--------------------------------------------------------------------------------
+git status 
+
+Sprawdzenie na czym stoimy. Git pokazuje czy dodaliśmy konkretne katalogi
+do obserwowaych czy nie. Zielony/Czerwony kolor. Dzięki temu wiemy, które 
+spushujemy, a które nie.
+
+--------------------------------------------------------------------------------
+git push
+
+Pushowanie/wypychanie zmian do zdalnego repoztorium. Trzeba je zatwierdzić
+swoim loginem i hasłem/(tokenem) do githuba. Można też stworzyć sobie 
+klucz ssh dzięki któremu nie będziemy musieli podawać za każdym razem
+naszych danych.
+
+--------------------------------------------------------------------------------
+git fetch
+
+Pobieranie commitów ze zdalnego repozytorium, brakujących w naszym lokalnym.
+UWAGA! Git fetch niczego nie zmienia. Nie aktualizuje gałęzi main, ani
+nie zmienia niczego w naszych plikach. Jest to poprostu obraz, który pokazuje
+jak wygląda zdalne repozytorium. By faktycznie coś zmienić musimy jeszcze użyć
+np: git merge które połączy nam pobrane commity z naszym repozytorium
+lokalnym
+
+--------------------------------------------------------------------------------
+git pull
+
+Robi to samo co git fetch + git merge tylko że to jedno wygodniejsze polecenie.
+
+--------------------------------------------------------------------------------
+git reset HEAD~1
+
+"Resetowanie" spowoduje cofnięcie gałęzi tak jakby ostatni commit nigdy
+nie istniał, nie został wykonany. (Nie działa na zdalych repozytoriach)
+
+--------------------------------------------------------------------------------
+git revert HEAD
+
+Nadpisywanie ostatniego commita poprzednim, coś jak kopiuj, wklej, zastąp.
+
+--------------------------------------------------------------------------------
+git commit --amend /  git commit --amend -m "Nowa wiadomość"
+
+Pozwala na zmianę komentarza commita
+
+--------------------------------------------------------------------------------
+git cherry-pick <commit1> <commit2> itd... / git cherry-pick c1 c2
+
+Kopiowanie commitów poniżej miejsca gdzie się obecnie znajdujemy (HEAD).
+--------------------------------------------------------------------------------
+git branch nazwa_brancha / git branch mybranch
+
+Tworzenie nowego brancha.
+
+--------------------------------------------------------------------------------
+git branch -f CoPrzenosimy Gdzieprzenosimy / git branch -f main HEAD~2
+
+Przeniesiene na siłę brancha (w tym przypadku dwa commity wstecz).
+
+--------------------------------------------------------------------------------
+git checkout nazwa_brancha / git checkout mybranch
+
+Przenosi nas na konkretny branch na którym chcemy pracować.
+
+--------------------------------------------------------------------------------
+git -b checkout nazwa_brancha / git -b mybranch
+
+Tworzy branch jednocześnie przenosząc nas na niego.
+
+--------------------------------------------------------------------------------
+git merge nazwa_brancha / git merge mybranch
+
+Łączenie wybranego brancha z obencym na którym się znajdjemy.
+W ten sposób łączymy dwie prace w jedną.
+
+--------------------------------------------------------------------------------
+git rebase nazwa_brancha / git rebase my branch
+
+Łączenie wybranego brancha z tym na którym się znajdujemy.
+
+Czym to się różni od git merge?
+Git merge grupuje zmiany według daty ich utworzenia. Jesli zatem,
+kilka zespółw pracuje nad jednym projektem i zrobią git merge to wszytkie
+zmiany zleją się ze sobą bo były tworzone w tym samym czasie. Będzie to
+wyglądło brzydko i niezbyt logicznie, ale daty będą po kolei ustawione.
+ Natomiast jeśli będą używać git rebase to zmiany będą ułożone według kolejności
+ich wprowadzania w obrębie jednej gałęzi. To znaczy że najpierw bęzie widoczna
+praca jednego zespołu (jedna gałąź), potem drugiego (druga gałąź) itd.
+Ciąg będzie wydawał się bardziej ligiczny i będzie bardziej czytelny
+pomimo tego że nie będzie on pogrupowany chronologicznie.
+By widzieć efekty działania git rebase cały zespół powinien z niego korzystać.
+
+--------------------------------------------------------------------------------
+git rebase -i nazwa_brancha (wersja interactive)
+
+Wersja git rebase która pozwala na manualne zmiany poszczególnych zatwierdzeń
+w procesie rebase-owania.
+
+--------------------------------------------------------------------------------
+git clone 
+
+Git clone służy do tworzenia lokalnych kopii, zdalnych repozytoriów.
+Czyli po polsku że mam sobie w internecie jakieś repozytorium na githubie
+i je (kopiuję) klonuję by mieć je u siebie. I to jest moja lokalna wersja
+tego zdalnego repozytorium.
+
+--------------------------------------------------------------------------------
+Referencje względne
+
+"HEAD to symboliczna nazwa dla aktualnie checkoutowanego commita 
+jest to zasadniczo commit z najnowszymi zmianami."
+
+"Odłączenie HEADa oznacza po prostu dołączenie go do commita, a nie gałęzi."
+
+Operator karety ^         np: main^ - Mamy na myśli pierwszego przodka main-a
+Tylkda + numer  ~(numer)  np: main~3- Mamy na myśli trzeciego przodka main-a 
+
+Bardzo przydate gdy operujemy na HEAD i chcemy cofnąć się ileś commitów wstecz.
+
+np: HEAD~4 - Cofamy się cztery commity do tyłu
+np: git branch -f main HEAD~3 - Przenosimy gałąź main trzy commity wstecz.
+
+
+

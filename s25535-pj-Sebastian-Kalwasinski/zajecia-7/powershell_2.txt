@@ -1,0 +1,222 @@
+================================================================================
+Opis Przechodzenia poradnika PowerShell część 2 - "Ładowanie modułu"
+================================================================================
+Gdy nie chce nam się wpisywać dużej ilości danych z kalwiatury to możemy
+stworzyć zmienną które będzie je dla nas przechowywać. Zmienna wygaśnie po 
+zamknięciu sesji więc bez obaw.
+
+np. $Hasło = "JaśFasola" , $Dane = "sudent"
+
+Możemy też zapisywać liczby    np. i = 10
+
+A potem np. ją dekrementować, lub inkrementować (tylko liczby)   $i--  , $i++
+
+$i = 10 ---> i++ ---> $i = 11
+
+By wyświetlić co zmienna przechowuje wystarczy ją wypisać np.  $i
+i pokarze nam co obecnie przechouwje. Uwaga. Zmienna jest rozpoznawalna przez
+znak dolara ($), wtedy wiemy że to zmienna a nie coś innego.
+
+================================================================================
+
+Import-Module BitsTransfer - Importujemy moduł w tym przypadku "BitsTransfer"
+
+Get-Command -Module BitsTransfer - Zdobywamy listę polecen do tego modułu
+
+$job = Start-BitsTransfer -Source http://szuflandia.pjwstk.edu.pl/pub/repo/java/
+lubuntu_13_04_v02.zip -Destination D:\ -Credential $cred
+-Authentication Negotiate -Asynchronous -DisplayName "Moj Bits Transfer"
+
+--------------------------------------------------------------------------------
+  $job =                                  - zmienna o nazwie "job"
+  Start-BitsTransfer                      - uruchamiamy pobieranie
+ -Source http://szuflandia......          - skąd pobeiramy
+ -Destination D:\Pobrane\....             - gdzie to pobieramy
+ -Credential $cred                        - poświadczenie zapisane w zmiennej
+ -Authentication Negotiate                - wymagany protokół "Negotiate" 
+ -Asynchronous                            - asynchronicznie, "w tle"
+ -DisplayName "Moj Bits Transfer"         - pod nazwą "Mój Bits Transfer"
+
+Get-BitsTransfer - wyświetl stan transferu
+Complete-BitsTransfer -BitsJob $job - ukończenie procesu transferu naszego $job
+Measure-Command {Get-ChildItem -Path C:\Windows} - linijka na mierzenie czasu
+
+--------------------------------------------------------------------------------
+Get-Alias | ? {$_.Definition -like "Get-ChildItem"} - suzkanie aliasów
+czyli takich zamienników/"synonimów"
+
+Zdobądź /\ Alias /\ (Zmienna przechowująca) definicję /\ takich jak /\ "..."
+
+Wyrzuca nam że "synonimem" Get-ChildItem jest nasze dobrze znane ls.
+Get-ChildItem = ls
+
+ls C:\ | %{Sleep -Milliseconds 250; return $_} | Format-Table
+
+Dla każdego katalogu w katalogu głównym,
+uśpij proces szukania na 0.25 sekund; zwróć (zmienna automatyczna) katalog,
+wyświetlaj w postaci tabeli.
+
+================================================================================
+Rejestr.
+================================================================================
+Get-PSDrive - Zdobądź Dyski dostępne w Powershellu 
+W PowerShellu poruszamy się podobnie jak w unixowych systemach cd i ścierzka.
+
+np: cd .\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
+
+--------------------------------------------------------------------------------
+Możemy wylistować sobie zawartość katalogu. Polecenie ls działa bo sprawdziliśmy
+że może, ale nie wiadomo czy inne, które znamy też muszą.
+
+Np: Microsoftowe pwd to jest Get-Location.
+
+Polecenie: Get-Alias | ? {$_.Definition -like "Get-Location"} 
+Zwraca nam unixowe "pwd", oraz "gl" czyli skrót od "Get-Location"
+Zatem wiemy że zarówno pwd jak i gl działają jako: "Podaj bieżącą lokalizajcę.
+
+Jest też polecenie Get-Alias, które wyświetla wszytkie aliasy.
+--------------------------------------------------------------------------------
+Możemy nasze polecenie ls przepuścić przez filtr by pozbyć się zbędnych danych.
+
+ls | %{Get-ItemProperty $_.pspath |
+Select-Object DisplayName, InstallDate, UninstallString} |
+Format-Table -AutoSize
+
+Wyświetl zawartość katalogu bieżącego, dla każdego elementu tego katalogu
+zdobądź właściwości o nazwie "DisplayName", "InstallDate", "UinstallString"
+Wyświetl w formie tabeli tak by dane były czytelne.
+
+pspath to zmienna która przechowuje obecnie przetwarzany element.
+
+--------------------------------------------------------------------------------
+Zamiast wylistowywać zawartości katalogu możemy wywołać konktertą akcję
+jaką powershell ma na nim wykonać np:
+
+Zamiast Format-Table -AutoSize, damy %{& $_.UninstallString}
+
+i w zasadzie możemy formatować komputer.
+
+================================================================================
+WMI - Windows Management Instrumentation
+================================================================================
+Get-WmiObject -Class Win32_Product | Format-Table -AutoSize
+
+Zdobądź elementWMI z kategorii Win32_Product, Wyświetl w formie czytelnej tabeli
+
+Dodając do tego: Select-Object Name, Vendor,
+mówimy że interesuje nas tylko nazwa i dostawca tym samym pozbywając się reszty:
+wersji, numeru identyfikacyjnego i innych mniej ciekawych rzeczy.
+
+Get-WmiObject -Class Win32_Product | Select-Object Name, Vendor | Format-Ta ...
+
+--------------------------------------------------------------------------------
+Możemy jeszcze dodać: ?{$_.Vendor.toLower() -like "*microsoft*"} 
+
+co sprawi że dostaniemy tylko te elementy których dostawcą jest "microsoft".
+Jak to przeczytać?
+
+Szukaj frazy, której częścią jest "microsoft".
+Zmień wielkość liter w nazwie dostawcy i go prównaj z tym co ci daję.
+
+toLower()- zmień wszyskie duże litery na małe. (Case-insensitive)
+Całe polecenie:
+
+ Get-WmiObject -Class Win32_Product |
+ ?{$_.Vendor.toLower() -like "*microsoft*"} |
+ Select-Object Name, Vendor |
+ Format-Table -AutoSize
+
+================================================================================
+Pora na tego tasiemca z deinstalacją.
+
+--------------------------------------------------------------------------------
+Get-WmiObject -Class Win32_Product | ?{$_.Vendor.toLower() -like "*microsoft*"}
+
+Zdobądź elementWMI z karegorii Win32_Product taki że ma napis "microsoft"
+niezależnie od wielkości liter w tym napisie.
+
+--------------------------------------------------------------------------------
+| %{ wmiproduct = $_ 
+
+Delkaracja że nasza nowa zmienna "wmiProduct" przyjmuje wartość obecnie 
+przetwarzaneg elementu (zmiennej automatycznej) na którym 
+obecnie działamy. Np: Obenie znaleźliśmy "Microsoft Visual c++" i to 
+będzie wartością naszej zmiennej wmiproduct.
+
+--------------------------------------------------------------------------------
+$answer = Read-Host "Uninstall '$($wmiProduct.Name)' [y/n]"
+$answer = $answer.ToLower()
+
+Uzyskaj odpowiedź od użytkownika (Read-Host) wyświetlając zapytanie:
+"Uinstall 'Nazwa obecnie przetwarzanego elementu' i podaj możliwe odp. [y/n].
+Spraw by odpowiedź była case-insensitive.
+
+--------------------------------------------------------------------------------
+switch($answer) {
+
+funkcja "switch case", która zależnie od odpowiedzi wykonuje konkretny przypadek
+
+--------------------------------------------------------------------------------
+"y" {
+            Write-Host -NoNewline -ForegroundColor Red "Removing: "
+            Write-Host -ForegroundColor White "$($wmiProduct.Name)"
+
+Gdy wybierzemy "y"
+Wypisz na ekran nie tworząc nowego wiersza, na czerwono "Removing"
+Wypisz na ekran (tworząc po tym nowy wiersz), na biało nazwę naszego elementu
+
+--------------------------------------------------------------------------------
+$wmiProduct.Uninstall() 
+Deinstalacja bierzącego elemetu
+
+--------------------------------------------------------------------------------
+"n" {Write-Host "Ok. Skipping."}
+
+Opcja "n", wypisz "Ok. Pomijanie."
+
+--------------------------------------------------------------------------------
+default {Write-Host -ForegroundColor Red "Unexpected value. Skippig.."}
+
+W przypadku niewybrania jednej z tych dwóch opcji
+wyświetl na czerwono "Unexpected value. Skipping..."
+
+================================================================================
+Dyski na Windowsie:
+Małe kopiuj wklej bo nie mam specjalnie czego dopisywać.
+
+Dyski HKML i HKCU to dyski dające dostęp do rejestru.
+
+- Alias - (Get-Alias) lista wszystkich zdefiniowanych aliasów w bierzącej sesji.
+          "Nasze synonimy" dla poleceń.
+
+Możemy tworzyć własnie aliasy np:
+New-alias -Name "Nazwa naszego nowego aliasu" Nazwa polecenia
+New-alias -Name "Wylistuj" Get-ChildItem
+
+
+- Cert - magazyn certyfikatów TLS/SSL stosowanych do szyfrowania danych.
+         Głównie połączeń sieciowych ale też i emaili czy podpisywania danych
+         by można było sprawdzić czy treść
+         np. dokumentu nie została zmodyfikowana.
+         Swoją drogą skrypty PowerShell-owe też można podpisać cyfrowo
+
+- Env - zmienne środowiskowe w bierzącej sesji.
+
+- Function - tu są wszystkie zdefiniowane w bierzącej sesji funkcje.
+
+- Variable - zmienne utworzone i dostępne w bierzącej sesji.
+             NIE SĄ to zmienne środowiskowe tylko takie zmienne lokalne.
+
+- WSMan - dostęp do całego systemu WMI. Czyli to co powyżej było robione
+          poprzez Get-WmiObject można by było spróbować pobrać z tego dysku
+
+Poza tymi dyskami są jeszcze inne, które można sobie dodać/dograć np:
+
+- GH - GitHub - by można było po githubie "chodzić" w PowerShell-u.
+- AD - ActiveDirectory - dodaje dysk dający dostęp do ActiveDiry.
+
+Takie dyski dodaje się przez załadowanie specjalnych modułów,
+które takie dyski udostępniają.
+
+
+
